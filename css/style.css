@@ -30,21 +30,28 @@ ul li {
 
 }
 
-#msg,
-#name {
+.input {
     padding: 5px;
     margin-bottom: 5px;
 }
 
-#send {
+.btn {
     margin-top: 10px;
     margin-left: 7px;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
-    background: #00d200;
+    background: #00d21b;
     color: white;
     cursor: pointer;
+}
+
+#logout.btn{
+    background: #d20000;
+}
+
+#login.btn{
+    background: #1800d2;
 }
 
 @media screen and (max-width: 480px){

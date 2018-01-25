@@ -1,3 +1,4 @@
+// init firebase
 var config = {
     apiKey: "AIzaSyA0_VTXxflyd-1jpLNChbjhfdQ2S8fXbFU",
     authDomain: "chatroom-20180125.firebaseapp.com",
