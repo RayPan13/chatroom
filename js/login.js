@@ -21,6 +21,7 @@ $(document).ready(function () {
         e.preventDefault();
         firebase.auth().signOut().then(function () {
             alert("已登出");
+            location.reload();
         }, function (error) {
             console.log(error);
         })
