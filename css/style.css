@@ -11,14 +11,14 @@ body {
 .text_box {
     background: #eee;
     width: 100%;
-    max-width: 500px;
     margin: 20px 0;
-    padding: 10px 20px;
+    padding: 10px 0;
     border-radius: 10px;
 }
 
 .text_box p {
     font-weight: bold;
+    margin-left: 10px;
 }
 
 ul {
@@ -45,4 +45,10 @@ ul li {
     background: #00d200;
     color: white;
     cursor: pointer;
+}
+
+@media screen and (max-width: 480px){
+    html,body {
+        padding: 5px;
+    }
 }
