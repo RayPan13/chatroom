@@ -1,6 +1,11 @@
-$(document).ready(function () {
-    var msg_ref = firebase.database().ref('/messages/')
+var is_ie = (navigator.userAgent.match(/IE/i) != null);
 
+$(document).ready(function () {
+    if (is_ie) {
+        alert('當前瀏覽器不支援，請升級瀏覽器版本或使用其他瀏覽器開啟');
+        return false;
+    }
+    var msg_ref = firebase.database().ref('/messages/');
     function update_msg() {
         msg_ref.once('value').then(function (snapshot) {
             var val = snapshot.val();
