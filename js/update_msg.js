@@ -21,6 +21,16 @@ $(document).ready(function () {
         update_msg();
     }
 
+    msg_ref.on('value', function (snapshot) {
+        var val = snapshot.val();
+        console.log(val);
+        var messages = '';
+        $.each(val, function (i, item) {
+            messages = messages + '<p>' + item.name + '：' + item.message + '</p>';
+        });
+        $('#text_box').html(messages);
+    })
+
     var userLogin;
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
@@ -61,9 +71,8 @@ $(document).ready(function () {
         var name = $('#name').val();
         if (user) {
             msg_ref.push({ 'message': msg, 'name': name });
-            update_msg();
         } else {
-            alert('路人甲不能發言!! 請先登入')
+            alert('路人甲不能發言!! 請先登入');
         }
     });
 
@@ -88,7 +97,6 @@ $(document).ready(function () {
 
     //查詢(即時更新)
     ref.on('value', function (snapshot) {
-        var val = snapshot.val();
         var val = snapshot.val();
         console.log(val)
     })
