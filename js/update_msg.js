@@ -1,4 +1,5 @@
 var is_ie = (navigator.userAgent.match(/IE/i) != null);
+var is_firefox = (navigator.userAgent.match(/Firefox/i) != null);
 
 $(document).ready(function () {
     if (is_ie) {
