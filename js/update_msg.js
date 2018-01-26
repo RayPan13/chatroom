@@ -17,7 +17,7 @@ $(document).ready(function () {
         console.log(val);
         var messages = '';
         $.each(val, function (i, item) {
-            messages = messages + '<p>' + item.name + '：' + item.message + '</p>';
+            messages = messages + '<p>' + item.name + '：' + '<span style="color: ' + item.color + '">' + item.message + '</span>' + '</p>';
         });
         $('#text_box').html(messages);
     })
@@ -26,7 +26,8 @@ $(document).ready(function () {
         var user = firebase.auth().currentUser;
         var msg = $('#msg').val();
         var name = $('#name').val();
-        msg_ref.push({ 'message': msg, 'name': name });
+        var color = $('#color').val();
+        msg_ref.push({ 'message': msg, 'name': name, 'color': color });
     });
 
     $('#msg').focus(function (e) {

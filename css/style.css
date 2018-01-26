@@ -9,7 +9,7 @@ body {
 }
 
 .text_box {
-    background: #eee;
+    background: #ccc;
     width: 100%;
     margin: 20px 0;
     padding: 10px 0;
@@ -33,6 +33,9 @@ ul li {
 .input {
     padding: 5px;
     margin-bottom: 5px;
+}
+.input_color {
+    width: 112px;
 }
 
 .btn {
