@@ -6,6 +6,7 @@ $(document).ready(function () {
         alert('當前瀏覽器不支援，請升級瀏覽器版本或使用其他瀏覽器開啟');
         return false;
     }
+
     var msg_ref = firebase.database().ref('/messages/');
     function update_msg() {
         msg_ref.once('value').then(function (snapshot) {
