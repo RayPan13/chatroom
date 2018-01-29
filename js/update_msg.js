@@ -27,7 +27,7 @@ $(document).ready(function () {
         return str_date;
     }
 
-    function pack_obj() {
+    function send_data() {
         var msg = $('#msg').val();
         var name = $('#name').val();
         var color = $('#color').val();
@@ -43,7 +43,7 @@ $(document).ready(function () {
             color = '#ff8000';
             $('#color').val(color);
         }
-        return { 'message': msg, 'name': name, 'color': color, 'date': date };
+        msg_ref.push({ 'message': msg, 'name': name, 'color': color, 'date': date });
     }
 
     function update_msg(val) {
@@ -61,10 +61,7 @@ $(document).ready(function () {
         update_msg(val);
     })
 
-    $('#send').on('click', function () {
-        var data_obj = pack_obj();
-        msg_ref.push(data_obj);
-    });
+    $('#send').on('click', send_data);
 
     $('#msg').focus(function (e) {
         e.preventDefault();
