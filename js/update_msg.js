@@ -7,10 +7,10 @@ $(document).ready(function () {
         return false;
     }
     function get_deadline() {
-        var deadline = new Date();
-        var hours = deadline.getHours();
-        var min = deadline.getMinutes();
-        var sec = deadline.getSeconds();
+        var date = new Date();
+        var hours = date.getHours();
+        var min = date.getMinutes();
+        var sec = date.getSeconds();
 
         if (hours < 10) {
             hours = '0' + hours;
@@ -22,9 +22,9 @@ $(document).ready(function () {
             sec = '0' + sec;
         }
 
-        var str_deadline = deadline.getFullYear() + '/' + (deadline.getMonth() + 1) + '/' + deadline.getDate() +
+        var str_date = date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate() +
             ' ' + hours + '：' + min + '：' + sec;
-        return str_deadline;
+        return str_date;
     }
 
     function pack_obj() {
