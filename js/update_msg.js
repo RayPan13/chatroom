@@ -57,6 +57,17 @@ $(document).ready(function () {
         var name = $('#name').val();
         var color = $('#color').val();
         var date = get_deadline();
+        if (msg == '') {
+            alert('請輸入想說的話!!');
+            $('#msg').focus();
+            return false;
+        }
+        var type = "^#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})$";
+        var re = new RegExp(type);
+        if (color.match(re) == null) {
+            color = '#ff8000';
+            $('#color').val(color);
+        }
         msg_ref.push({ 'message': msg, 'name': name, 'color': color, 'date': date });
     });
 
