@@ -46,7 +46,11 @@ ul li {
     color: white;
     cursor: pointer;
 }
-
+.msg_date{
+    font-size: 12px;
+    color: brown;
+    margin-left: 5px;
+}
 #logout.btn{
     background: #d20000;
 }
