@@ -1,5 +1,6 @@
 var is_ie = (navigator.userAgent.match(/IE/i) != null);
 var is_firefox = (navigator.userAgent.match(/Firefox/i) != null);
+var msg_ref = firebase.database().ref('/messages/');
 $(document).ready(function () {
     if (is_ie) {
         alert('當前瀏覽器不支援，請升級瀏覽器版本或使用其他瀏覽器開啟');
@@ -26,33 +27,7 @@ $(document).ready(function () {
         return str_deadline;
     }
 
-    var msg_ref = firebase.database().ref('/messages/');
-    function update_msg() {
-        msg_ref.once('value').then(function (snapshot) {
-            var val = snapshot.val();
-            var messages = '';
-            var text_box = document.getElementById('text_box');
-            $.each(val, function (i, item) {
-                messages = messages + '<p>' + item.name + '：' + item.message + '</p>';
-            });
-            $('#text_box').html(messages);
-            text_box.scrollTop = text_box.scrollHeight;
-        })
-    }
-
-    msg_ref.on('value', function (snapshot) {
-        var val = snapshot.val();
-        var messages = '';
-        var text_box = document.getElementById('text_box');
-        $.each(val, function (i, item) {
-            messages = messages + '<p>' + item.name + '：' + '<span style="color: ' + item.color + '">' + item.message + '</span><span class="msg_date">' + item.date + '</span></p>';
-        });
-        $('#text_box').html(messages);
-        text_box.scrollTop = text_box.scrollHeight;
-    })
-
-    var text_box = $("#text_box");
-    $('#send').on('click', function () {
+    function pack_obj() {
         var msg = $('#msg').val();
         var name = $('#name').val();
         var color = $('#color').val();
@@ -68,7 +43,27 @@ $(document).ready(function () {
             color = '#ff8000';
             $('#color').val(color);
         }
-        msg_ref.push({ 'message': msg, 'name': name, 'color': color, 'date': date });
+        return { 'message': msg, 'name': name, 'color': color, 'date': date };
+    }
+
+    function update_msg(val) {
+        var messages = '';
+        var text_box = document.getElementById('text_box');
+        $.each(val, function (i, item) {
+            messages = messages + '<p><span>' + item.name + '：</span>' + '<span style="color: ' + item.color + '">' + item.message + '</span><span class="msg_date">' + item.date + '</span></p>';
+        });
+        $('#text_box').html(messages);
+        text_box.scrollTop = text_box.scrollHeight;
+    }
+
+    msg_ref.on('value', function (snapshot) {
+        var val = snapshot.val();
+        update_msg(val);
+    })
+
+    $('#send').on('click', function () {
+        var data_obj = pack_obj();
+        msg_ref.push(data_obj);
     });
 
     $('#msg').focus(function (e) {
